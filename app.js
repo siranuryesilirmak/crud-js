@@ -3,6 +3,7 @@ const input1 = document.querySelector("#input1")
 const input2 = document.querySelector("#input2")
 const input3 = document.querySelector("#input3")
 const listGroup = document.querySelector("#list-group")
+let msg = document.getElementById("msg");
 
 let persons = [
     {
@@ -43,7 +44,13 @@ const personList = (person) => {
 }
 
 let formValidation = () => {
-    createData()
+    if(input1.value === "" || input2.value === "" || input3.value === ""){
+        msg.innerHTML = "*boş bırakılamaz."
+    }else if(!Number(input3.value)){
+        msg.innerHTML = "*yaşınızı doğru giriniz."
+    }else{
+        createData()
+    }
   };
 
 const createData = () => {
