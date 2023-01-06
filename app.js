@@ -39,8 +39,17 @@ const personList = (person) => {
         const item = document.createElement("li")
         item.classList.add("list-group-item")
         item.innerHTML=(`${person.name} ${person.surname} (${person.age})`)
+        const btnDelete = document.createElement("button")
+        btnDelete.classList.add("btnDelete")
+        btnDelete.innerHTML="&times;"
+        item.append(btnDelete)
         listGroup.append(item)
         localStorage.setItem("persons",JSON.stringify(persons))
+        btnDelete.addEventListener("click", () => {
+            persons.splice(person,1)
+            localStorage.setItem("persons",JSON.stringify(persons))
+            item.remove()
+        })
 }
 
 let formValidation = () => {
@@ -50,6 +59,7 @@ let formValidation = () => {
         msg.innerHTML = "*yaşınızı doğru giriniz."
     }else{
         createData()
+        msg.innerHTML = "Kişi Eklendi."   
     }
   };
 
@@ -59,6 +69,7 @@ const createData = () => {
     persons.push(item)
     localStorage.setItem("persons",JSON.stringify(persons))
 }
+
 
 
  
