@@ -2,6 +2,7 @@ const inputGroup = document.querySelector("#input-group")
 const input1 = document.querySelector("#input1")
 const input2 = document.querySelector("#input2")
 const input3 = document.querySelector("#input3")
+
 const listGroup = document.querySelector("#list-group")
 let msg = document.getElementById("msg");
 
@@ -40,9 +41,13 @@ const personList = (person) => {
         item.classList.add("list-group-item")
         item.innerHTML=(`${person.name} ${person.surname} (${person.age})`)
         const btnDelete = document.createElement("button")
-        btnDelete.classList.add("btnDelete")
+        const btnUpdate = document.createElement("button")
+        btnDelete.classList.add("float-right", "border-0")
+        btnUpdate.classList.add("float-right", "mr-2","border-0")
+        btnUpdate.innerHTML="edit"
         btnDelete.innerHTML="&times;"
         item.append(btnDelete)
+        item.append(btnUpdate)
         listGroup.append(item)
         localStorage.setItem("persons",JSON.stringify(persons))
         btnDelete.addEventListener("click", () => {
@@ -50,6 +55,20 @@ const personList = (person) => {
             localStorage.setItem("persons",JSON.stringify(persons))
             item.remove()
         })
+        btnUpdate.addEventListener("click", () => {
+            input1.value=person.name
+            input2.value=person.surname
+            input3.value=person.age
+            persons.splice(person,1)
+            localStorage.setItem("persons",JSON.stringify(persons))
+            item.remove()
+            
+        })
+
+        input1.value=""
+        input2.value=""
+        input3.value=""
+
 }
 
 let formValidation = () => {
