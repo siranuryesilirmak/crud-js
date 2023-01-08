@@ -1,4 +1,5 @@
 I used CRUD operations.
+I used Local Storage.
 
 ## CREATE
 ![image.png](/img/create.png)
